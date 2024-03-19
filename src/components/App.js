@@ -6,14 +6,19 @@ function App() {
   const [listings, setListings] = useState([])
   const url = "http://localhost:6001/listings"
 
-  useEffect(()=>{
+  useEffect(()=> {
   fetch(url)
-    .then (res => res.json())
-    .then ( data => setListings(data))
+    .then (res => {
+      if (res.ok) {
+        return res.json();
+      }
+      throw new Error("Network response was not ok");
+    })
+    .then (data => setListings(data))
     .catch(error => console.error("Error", error))
   },[])
 
-
+console.log (listings)
 
   return (
     <div className="app">

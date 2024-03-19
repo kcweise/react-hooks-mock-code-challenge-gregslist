@@ -1,14 +1,16 @@
 import React, {useState} from "react";
 
-function ListingCard({ id, description, image, location}) {
+function ListingCard({ id, description, image, location, handleDelete }) {
 
 const [toggle, setToggle] = useState (false)
 
 const handleClick = () =>setToggle(!toggle);
 
 
+
+
   return (
-    <li className="card" key={id} id= {id}>
+    <li className="card" id= {id}>
       <div className="image">
         <span className="price">$0</span>
         <img src={image} alt={description} />
@@ -21,7 +23,7 @@ const handleClick = () =>setToggle(!toggle);
         )}
         <strong>{description}</strong>
         <span> · {location}</span>
-        <button className="emoji-button delete">🗑</button>
+        <button className="emoji-button delete" onClick={()=>handleDelete(id)} >🗑</button>
       </div>
     </li>
   );
